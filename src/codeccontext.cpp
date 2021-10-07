@@ -374,7 +374,9 @@ void CodecContext2::setCodec(const Codec &codec, bool resetDefaults, Direction d
             avcodec_free_context(&m_raw);
             m_raw = avcodec_alloc_context3(codec.raw());
         } else {
-            avcodec_get_context_defaults3(m_raw, codec.raw());
+			avcodec_free_context(&m_raw);
+			m_raw = avcodec_alloc_context3(codec.raw());
+//            avcodec_get_context_defaults3(m_raw, codec.raw());
         }
     } else {
         m_raw->codec_id   = !codec.isNull() ? codec.raw()->id : AV_CODEC_ID_NONE;
@@ -912,10 +914,10 @@ CodecContext2::decodeCommon(T &outFrame,
         frame->pts = av::frame::get_best_effort_timestamp(frame);
 
     // Or: AVCODEC < 57.24.0 if this macro will be removes in future
-#if !defined(FF_API_PKT_PTS)
-    if (frame->pts == av::NoPts)
-        frame->pts = frame->pkt_pts;
-#endif
+//#if !defined(FF_API_PKT_PTS)
+//    if (frame->pts == av::NoPts)
+//        frame->pts = frame->pkt_pts;
+//#endif
 
     if (frame->pts == av::NoPts)
         frame->pts = frame->pkt_dts;

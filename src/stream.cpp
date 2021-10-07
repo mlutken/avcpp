@@ -58,7 +58,8 @@ Timestamp Stream::duration() const
 
 Timestamp Stream::currentDts() const
 {
-    return {RAW_GET2(isValid(), cur_dts, av::NoPts), timeBase()};
+	return {0, timeBase()}; // FIXMENM field not present in AVStream anymore
+//	return {RAW_GET2(isValid(), cur_dts, av::NoPts), timeBase()};	// FIXMENM fild not present in AVStream anymore
 }
 
 AVMediaType Stream::mediaType() const
