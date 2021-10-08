@@ -4,7 +4,7 @@
 #include "ffmpeg.h"
 #include "filtercontext.h"
 #include "filter.h"
-#include "rational.h"
+#include "av_rational.h"
 #include "frame.h"
 #include "averror.h"
 

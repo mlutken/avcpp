@@ -1,8 +1,15 @@
 #include <iostream>
 
-#include "rational.h"
+#include "av_rational.h"
 
 using namespace std;
+
+extern "C"
+{
+#include <libavutil/rational.h>
+}
+
+
 
 namespace av
 {

@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "ffmpeg.h"
-#include "rational.h"
+#include "av_rational.h"
 #include "filtercontext.h"
 #include "filter.h"
 #include "averror.h"

@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "ffmpeg.h"
-#include "rational.h"
+#include "av_rational.h"
 #include "timestamp.h"
 
 namespace av

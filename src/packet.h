@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "ffmpeg.h"
-#include "rational.h"
+#include "av_rational.h"
 #include "stream.h"
 #include "averror.h"
 #include "timestamp.h"

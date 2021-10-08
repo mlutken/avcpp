@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "ffmpeg.h"
-#include "rational.h"
+#include "av_rational.h"
 #include "format.h"
 #include "pixelformat.h"
 #include "sampleformat.h"

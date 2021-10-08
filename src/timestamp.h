@@ -3,7 +3,7 @@
 #include <chrono>
 
 #include "avutils.h"
-#include "rational.h"
+#include "av_rational.h"
 
 namespace av {
 

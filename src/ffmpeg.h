@@ -6,6 +6,7 @@
 extern "C"
 {
 #include <libavutil/avutil.h>
+#include <libavutil/rational.h>
 #include <libavutil/parseutils.h>
 #include <libavutil/mathematics.h>
 #include <libavutil/opt.h>
