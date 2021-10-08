@@ -2,13 +2,12 @@
 
 #include "av_rational.h"
 
-using namespace std;
-
 extern "C"
 {
-#include <libavutil/rational.h>
+#include <libavutil/mathematics.h>
 }
 
+using namespace std;
 
 
 namespace av

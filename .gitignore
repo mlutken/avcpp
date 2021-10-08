@@ -16,3 +16,4 @@ subprojects/packagecache
 .idea
 cmake-*
 *.o
+__pycache__/

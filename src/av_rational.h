@@ -1,11 +1,15 @@
-#ifndef RATIONAL_H
-#define RATIONAL_H
+#ifndef AVCPP_RATIONAL_H
+#define AVCPP_RATIONAL_H
 
 #include <utility>
 #include <iostream>
 #include <memory>
 
-#include "ffmpeg.h"
+//#include "ffmpeg.h"
+extern "C"
+{
+#include <libavutil/rational.h>
+}
 
 namespace av
 {
@@ -38,7 +42,7 @@ public:
 
     static Rational fromDouble(double value, int maxPrecision = RationalMaxPrecision) noexcept;
 
-    int64_t rescale(int64_t srcValue, const Rational &dstBase) const noexcept;
+	int64_t rescale(int64_t srcValue, const Rational &dstBase) const noexcept;
 
     void dump() const noexcept;
 
@@ -110,4 +114,4 @@ inline std::istream& operator>> (std::istream &stream, Rational &value)
 
 } // ::av
 
-#endif // RATIONAL_H
+#endif // AVCPP_RATIONAL_H

@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+
+Import("env")
+Import("env_modules")
+
+env_avcpp = env_modules.Clone()
+
+thirdparty_obj = []
+
+avcpp_dir = "#modules/avcpp/"
+thirdparty_sources = [
+    "src/audioresampler.cpp",
+    "src/averror.cpp",
+    "src/avtime.cpp",
+    "src/avutils.cpp",
+    "src/codeccontext.cpp",
+    "src/codec.cpp",
+    "src/dictionary.cpp",
+    "src/formatcontext.cpp",
+    "src/format.cpp",
+    "src/frame.cpp",
+    "src/packet.cpp",
+    "src/pixelformat.cpp",
+    "src/av_rational.cpp",
+    "src/rect.cpp",
+    "src/sampleformat.cpp",
+    "src/stream.cpp",
+    "src/timestamp.cpp",
+    "src/videorescaler.cpp",
+    "src/filters/buffersink.cpp",
+    "src/filters/buffersrc.cpp",
+    "src/filters/filtercontext.cpp",
+    "src/filters/filter.cpp",
+    "src/filters/filtergraph.cpp",
+    "src/filters/filterpad.cpp"
+]
+thirdparty_sources = [avcpp_dir + file for file in thirdparty_sources]
+
+env_avcpp.Prepend(CPPPATH=["#modules/avcpp/src", "#modules/libffmpeg"])
+
+env_thirdparty = env_avcpp.Clone()
+env_thirdparty.disable_warnings()
+env_thirdparty.add_source_files(thirdparty_obj, thirdparty_sources)
+env.modules_sources += thirdparty_obj
+
+#
+module_obj = []
+
+# Godot source files
+
+env_avcpp.add_source_files(module_obj, "*.cpp")
+env.modules_sources += module_obj
+
+# Needed to force rebuilding the module files when the thirdparty library is updated.
+env.Depends(module_obj, thirdparty_obj)
