@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include "format.h"
-#include "codec.h"
+#include "av_format.h"
+#include "av_codec.h"
 
 #ifdef _MSC_VER
 # pragma warning (disable : 4702) // Disable warning: unreachable code

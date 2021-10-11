@@ -1,7 +1,7 @@
-#ifndef MODULES_AVCPP_REGISTER_TYPES_H
-#define MODULES_AVCPP_REGISTER_TYPES_H
+#ifndef MODULES_WRAPFFMPEG_REGISTER_TYPES_H
+#define MODULES_WRAPFFMPEG_REGISTER_TYPES_H
 
-void register_avcpp_types();
-void unregister_avcpp_types();
+void register_wrapffmpeg_types();
+void unregister_wrapffmpeg_types();
 
-#endif // #ifndef MODULES_AVCPP_REGISTER_TYPES_H
+#endif // #ifndef MODULES_WRAPFFMPEG_REGISTER_TYPES_H

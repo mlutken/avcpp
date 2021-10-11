@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include "av.h"
-#include "dictionary.h"
+#include "av_dictionary.h"
 
-using namespace std;
-using namespace av;
+//using namespace std;
+//using namespace av;
 
 int main()
 {
@@ -20,24 +20,24 @@ int main()
         dict.set("test1", "test value");
         dict.set("test2", 31337);
 
-        cout << dict.get("test1") << endl
-             << dict.get("test2") << endl;
-             //<< dict.get("test3") << endl;
+		std::cout << dict.get("test1") << std::endl
+			 << dict.get("test2") << std::endl;
+			 //<< dict.get("test3") << std::endl;
 
         {
-            shared_ptr<char> sptr;
+			std::shared_ptr<char> sptr;
             {
                 av::Dictionary::AvStringPtr ptr;
                 ptr = dict.toRawStringPtr('=', ';');
-                cout << ptr.get() << endl;
+				std::cout << ptr.get() << std::endl;
 
                 sptr = std::move(ptr);
             }
 
-            cout << sptr.get() << endl;
+			std::cout << sptr.get() << std::endl;
         }
 
-        cout << dict[1] << endl;
+		std::cout << dict[1] << std::endl;
     }
 
 
@@ -46,44 +46,44 @@ int main()
         dict.set("test1", "test value");
         dict.set("test2", 31337);
 
-        cout << endl;
-        cout << "ptr: " << (void*)dict.raw() << endl;
-        cout << dict.get("test1") << endl
-             << dict.get("test2") << endl;
+		std::cout << std::endl;
+		std::cout << "ptr: " << (void*)dict.raw() << std::endl;
+		std::cout << dict.get("test1") << std::endl
+			 << dict.get("test2") << std::endl;
 
         av::Dictionary dict2 = dict;
         av::Dictionary dict3;
-        cout << endl;
-        cout << "ptr: " << (void*)dict.raw() << endl;
-        cout << dict.get("test1") << endl
-             << dict.get("test2") << endl;
-        cout << "ptr: " << (void*)dict2.raw() << endl;
-        cout << dict2.get("test1") << endl
-             << dict2.get("test2") << endl;
+		std::cout << std::endl;
+		std::cout << "ptr: " << (void*)dict.raw() << std::endl;
+		std::cout << dict.get("test1") << std::endl
+			 << dict.get("test2") << std::endl;
+		std::cout << "ptr: " << (void*)dict2.raw() << std::endl;
+		std::cout << dict2.get("test1") << std::endl
+			 << dict2.get("test2") << std::endl;
 
         dict3 = dict;
-        cout << endl;
-        cout << "ptr: " << (void*)dict.raw() << endl;
-        cout << dict.get("test1") << endl
-             << dict.get("test2") << endl;
-        cout << "ptr: " << (void*)dict3.raw() << endl;
-        cout << dict3.get("test1") << endl
-             << dict3.get("test2") << endl;
+		std::cout << std::endl;
+		std::cout << "ptr: " << (void*)dict.raw() << std::endl;
+		std::cout << dict.get("test1") << std::endl
+			 << dict.get("test2") << std::endl;
+		std::cout << "ptr: " << (void*)dict3.raw() << std::endl;
+		std::cout << dict3.get("test1") << std::endl
+			 << dict3.get("test2") << std::endl;
 
         av::Dictionary dict4 = std::move(dict2);
         av::Dictionary dict5;
-        cout << endl;
-        cout << "ptr: " << (void*)dict2.raw() << endl;
-        cout << "ptr: " << (void*)dict4.raw() << endl;
-        cout << dict4.get("test1") << endl
-             << dict4.get("test2") << endl;
+		std::cout << std::endl;
+		std::cout << "ptr: " << (void*)dict2.raw() << std::endl;
+		std::cout << "ptr: " << (void*)dict4.raw() << std::endl;
+		std::cout << dict4.get("test1") << std::endl
+			 << dict4.get("test2") << std::endl;
 
         dict5 = std::move(dict3);
-        cout << endl;
-        cout << "ptr: " << (void*)dict3.raw() << endl;
-        cout << "ptr: " << (void*)dict5.raw() << endl;
-        cout << dict5.get("test1") << endl
-             << dict5.get("test2") << endl;
+		std::cout << std::endl;
+		std::cout << "ptr: " << (void*)dict3.raw() << std::endl;
+		std::cout << "ptr: " << (void*)dict5.raw() << std::endl;
+		std::cout << dict5.get("test1") << std::endl
+			 << dict5.get("test2") << std::endl;
 
     }
 
@@ -95,28 +95,28 @@ int main()
 
         for (auto const &i : dict)
         {
-            cout << i.key() << " -> " << i.value() << endl;
+			std::cout << i.key() << " -> " << i.value() << std::endl;
         }
 
         auto it = dict.begin();
         for (int i = 0; it != dict.end(); ++it, ++i)
         {
-            cout << (*it).key() << " -> " << (*it).value() << endl;
-            cout << it->key() << " -> " << it->value() << endl;
-            it->set(to_string(i));
+			std::cout << (*it).key() << " -> " << (*it).value() << std::endl;
+			std::cout << it->key() << " -> " << it->value() << std::endl;
+			it->set(std::to_string(i));
         }
 
         {
-            auto it = dict.cbegin();
-            for (int i = 0; it != dict.cend(); ++it, ++i)
+			auto it1 = dict.cbegin();
+			for (int i = 0; it1 != dict.cend(); ++it1, ++i)
             {
-                cout << (*it).key() << " -> " << (*it).value() << endl;
-                cout << it->key() << " -> " << it->value() << endl;
+				std::cout << (*it1).key() << " -> " << (*it1).value() << std::endl;
+				std::cout << it1->key() << " -> " << it1->value() << std::endl;
                 //it->set(to_string(i)); // <-- compilation error
             }
         }
 
-        cout << "End\n";
+		std::cout << "End\n";
     }
 
     {
@@ -127,7 +127,7 @@ int main()
 
         for (auto const &i : dict)
         {
-            cout << i.key() << " -> " << i.value() << endl;
+			std::cout << i.key() << " -> " << i.value() << std::endl;
         }
 
         dict = {
@@ -137,7 +137,7 @@ int main()
 
         for (auto const &i : dict)
         {
-            cout << i.key() << " -> " << i.value() << endl;
+			std::cout << i.key() << " -> " << i.value() << std::endl;
         }
     }
 
@@ -160,29 +160,29 @@ int main()
         c.set("i1", "change2");
         auto d = arr[0];
 
-        cout << v.get("i1") << ", " << c.get("i1") << ", " << d.get("i1") << endl;
+		std::cout << v.get("i1") << ", " << c.get("i1") << ", " << d.get("i1") << std::endl;
 
         auto& e = arr[0];
         e.set("i1", "change3");
         auto& f = arr[0];
-        cout << e.get("i1") << ", " << f.get("i1") << endl;
+		std::cout << e.get("i1") << ", " << f.get("i1") << std::endl;
 
     }
 
     {
-        Dictionary dict;
-        dict.parseString("key1=val1;key2=val2", "=", ";");
-        dict.parseString("key3=val1;key4=val2", string("="), string(";"));
+		av::Dictionary dict;
+		dict.parseString("key1=val1;key2=val2", "=", ";");
+		dict.parseString("key3=val1;key4=val2", "=", ";");
 
-        error_code ec;
-        cout << " str: " << dict.toString(':', ',', ec) << endl;
-        cout << " err: " << ec << ", " << ec.message() << endl;
-        cout << " str: " << dict.toString(':', '\0', ec) << endl;
-        cout << " err: " << ec << ", " << ec.message() << endl;
+		std::error_code ec;
+		std::cout << " str: " << dict.toString(':', ',', ec) << std::endl;
+		std::cout << " err: " << ec << ", " << ec.message() << std::endl;
+		std::cout << " str: " << dict.toString(':', '\0', ec) << std::endl;
+		std::cout << " err: " << ec << ", " << ec.message() << std::endl;
 
         auto raw = dict.toRawStringPtr('=', ',', ec);
-        cout << " str: " << raw.get() << endl;
-        cout << " err: " << ec << ", " << ec.message() << endl;
+		std::cout << " str: " << raw.get() << std::endl;
+		std::cout << " err: " << ec << ", " << ec.message() << std::endl;
 
     }
 #endif
@@ -219,7 +219,7 @@ int main()
             av_freep(ptr2);
             //av_freep(dict.rawPtr());
 
-            cout << (void*)dict.raw() << endl;
+			std::cout << (void*)dict.raw() << std::endl;
 
             AVDictionary *rdict = nullptr;
             av_dict_set(&rdict, "rdict", "rvalue", 0);
@@ -255,7 +255,7 @@ int main()
             auto ptr2 = arr2[i].raw();
             auto ptr3 = arr[i].raw();
 
-            cout << (void*)ptr1 << " vs " << (void*)ptr2 << " vs " << (void*)ptr3 << endl;
+			std::cout << (void*)ptr1 << " vs " << (void*)ptr2 << " vs " << (void*)ptr3 << std::endl;
         }
     }
 #endif

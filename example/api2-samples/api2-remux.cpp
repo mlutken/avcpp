@@ -11,19 +11,19 @@
 #include <unistd.h>
 
 #include "av.h"
-#include "ffmpeg.h"
-#include "codec.h"
-#include "packet.h"
-#include "videorescaler.h"
-#include "audioresampler.h"
-#include "avutils.h"
+#include "av_ffmpeg.h"
+#include "av_codec.h"
+#include "av_packet.h"
+#include "av_videorescaler.h"
+#include "av_audioresampler.h"
+#include "av_utils.h"
 
 // API2
-#include "format.h"
-#include "formatcontext.h"
-#include "codec.h"
-#include "codeccontext.h"
-#include "videorescaler.h"
+#include "av_format.h"
+#include "av_formatcontext.h"
+#include "av_codec.h"
+#include "av_codeccontext.h"
+#include "av_videorescaler.h"
 
 using namespace std;
 using namespace av;

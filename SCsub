@@ -3,42 +3,48 @@
 Import("env")
 Import("env_modules")
 
-env_avcpp = env_modules.Clone()
+if env["platform"] == "linuxbsd":
+#    env.Append(LIBS=["xcb", "avcodec", "avutil", "avfilter", "swresample", "swscale", "OpenCL", "bz2", "va", "va-drm", "va-x11", "lzma"])
+    env.Append(LIBS=["xcb", "lzma"])
+
+
+
+env_wrapffmpeg = env_modules.Clone()
 
 thirdparty_obj = []
 
-avcpp_dir = "#modules/avcpp/"
+wrapffmpeg_dir = "#modules/wrapffmpeg/"
 thirdparty_sources = [
-    "src/audioresampler.cpp",
-    "src/averror.cpp",
-    "src/avtime.cpp",
-    "src/avutils.cpp",
-    "src/codeccontext.cpp",
-    "src/codec.cpp",
-    "src/dictionary.cpp",
-    "src/formatcontext.cpp",
-    "src/format.cpp",
-    "src/frame.cpp",
-    "src/packet.cpp",
-    "src/pixelformat.cpp",
+    "src/av_audioresampler.cpp",
+    "src/av_error.cpp",
+    "src/av_time.cpp",
+    "src/av_utils.cpp",
+    "src/av_codeccontext.cpp",
+    "src/av_codec.cpp",
+    "src/av_dictionary.cpp",
+    "src/av_formatcontext.cpp",
+    "src/av_format.cpp",
+    "src/av_frame.cpp",
+    "src/av_packet.cpp",
+    "src/av_pixelformat.cpp",
     "src/av_rational.cpp",
-    "src/rect.cpp",
-    "src/sampleformat.cpp",
-    "src/stream.cpp",
-    "src/timestamp.cpp",
-    "src/videorescaler.cpp",
-    "src/filters/buffersink.cpp",
-    "src/filters/buffersrc.cpp",
-    "src/filters/filtercontext.cpp",
-    "src/filters/filter.cpp",
-    "src/filters/filtergraph.cpp",
-    "src/filters/filterpad.cpp"
+    "src/av_rect.cpp",
+    "src/av_sampleformat.cpp",
+    "src/av_stream.cpp",
+    "src/av_timestamp.cpp",
+    "src/av_videorescaler.cpp",
+    "src/filters/av_buffersink.cpp",
+    "src/filters/av_buffersrc.cpp",
+    "src/filters/av_filtercontext.cpp",
+    "src/filters/av_filter.cpp",
+    "src/filters/av_filtergraph.cpp",
+    "src/filters/av_filterpad.cpp"
 ]
-thirdparty_sources = [avcpp_dir + file for file in thirdparty_sources]
+thirdparty_sources = [wrapffmpeg_dir + file for file in thirdparty_sources]
 
-env_avcpp.Prepend(CPPPATH=["#modules/avcpp/src", "#modules/libffmpeg"])
+env_wrapffmpeg.Prepend(CPPPATH=["#modules/wrapffmpeg/src", "#modules/libffmpeg"])
 
-env_thirdparty = env_avcpp.Clone()
+env_thirdparty = env_wrapffmpeg.Clone()
 env_thirdparty.disable_warnings()
 env_thirdparty.add_source_files(thirdparty_obj, thirdparty_sources)
 env.modules_sources += thirdparty_obj
@@ -48,7 +54,7 @@ module_obj = []
 
 # Godot source files
 
-env_avcpp.add_source_files(module_obj, "*.cpp")
+env_wrapffmpeg.add_source_files(module_obj, "*.cpp")
 env.modules_sources += module_obj
 
 # Needed to force rebuilding the module files when the thirdparty library is updated.
